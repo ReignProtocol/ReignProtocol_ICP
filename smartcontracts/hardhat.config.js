@@ -32,9 +32,13 @@ module.exports = {
 		artifacts: "../frontend/src/artifacts",
 	},
 	networks: {
-		shardeum: {
-			url: process.env.SHARDEUM_TESTNET_URL,
+		alfajores: {
+			url: "https://alfajores-forno.celo-testnet.org",
 			accounts: [process.env.PRIVATE_KEY],
-		},
+			chainId: 44787
+		  },
+		  localhost: {
+			url: "http://127.0.0.1:8545"
+		  },
 	},
 };
