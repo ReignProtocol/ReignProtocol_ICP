@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState, useEffect } from "react";
 import GradientButton from "../../uiTools/Button/GradientButton";
 import Header from "../Layout/Header";
 import { useNavigate } from "react-router-dom";
@@ -8,29 +8,34 @@ import InvestImageLightmode from "../../assets/Invest_lightmode.svg";
 import BorrowImageLightmode from "../../assets/Borrow_lightmode.svg";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
 import { isConnected } from "../../services/BackendConnectors/userConnectors/commonConnectors";
+
 const LandingPage = () => {
-	const path = useNavigate();
-	//const { isConnected} = useContext(WalletContext);
+  const path = useNavigate();
 
-	const [darkMode, setDarkMode] = useState(true);
-	const [metaStatus, setMetaStatus] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
+  const [metaStatus, setMetaStatus] = useState(false);
 
-	const [errormsg, setErrormsg] = useState({
-		status: false,
-		msg: "",
-	});
+  const [errormsg, setErrormsg] = useState({
+    status: false,
+    msg: "",
+  });
 
-	const fetchStatus = async () => {
-		const getStatus = await isConnected();
-		if (getStatus.success) {
-		} else {
-			setErrormsg({ status: !getStatus.success, msg: getStatus.msg });
-		}
-	};
+  useEffect(() => {
+    fetchStatus();
+  }, []);
 
-	function hitRequestAccount() {
-		fetchStatus();
-	}
+  const fetchStatus = async () => {
+    const getStatus = await isConnected();
+    if (getStatus.success) {
+      // Proceed with your logic when wallet is connected
+    } else {
+      setErrormsg({ status: true, msg: getStatus.msg });
+    }
+  };
+
+  const hitRequestAccount = () => {
+    fetchStatus();
+  };
 
 	return (
 		<div className={`${darkMode ? "dark" : ""} background`}>

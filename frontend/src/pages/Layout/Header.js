@@ -46,7 +46,7 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
         disconnectWallet
       } = useContext(WalletContext);
 
-      const { isConnected} = useContext(WalletContext);
+    //   const { isConnected} = useContext(WalletContext);
 
     //   useEffect(() => {
     //     async function fetchData() {

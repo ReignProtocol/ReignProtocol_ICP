@@ -88,6 +88,8 @@ export const WalletProvider = ({ children }) => {
   const getUserWalletAddress = () => {
     return selectedAddress;
   };
+  
+  
 
   return (
     <WalletContext.Provider
