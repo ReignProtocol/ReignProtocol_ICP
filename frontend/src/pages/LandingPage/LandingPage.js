@@ -8,10 +8,9 @@ import InvestImageLightmode from "../../assets/Invest_lightmode.svg";
 import BorrowImageLightmode from "../../assets/Borrow_lightmode.svg";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
 import { isConnected } from "../../services/BackendConnectors/userConnectors/commonConnectors";
-import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 const LandingPage = () => {
 	const path = useNavigate();
-	const { isConnected} = useContext(WalletContext);
+	//const { isConnected} = useContext(WalletContext);
 
 	const [darkMode, setDarkMode] = useState(true);
 	const [metaStatus, setMetaStatus] = useState(false);

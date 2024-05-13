@@ -138,3 +138,18 @@ export const getGasPrice = async () => {
   } 
 };
 
+export const isConnected = (WalletContext) => {
+  return WalletContext.connected;
+}
+
+export const getWalletBal = (WalletContext) => {
+  return WalletContext.balance;
+}
+
+export const getUserWalletAddress = (WalletContext) => {
+  return WalletContext.selectedAddress;
+}
+
+
+
+
