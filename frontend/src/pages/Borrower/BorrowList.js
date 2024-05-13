@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import {
 	getDrawdownOpportunities,
 	getOpportunitysOf,
@@ -16,6 +16,7 @@ import ErrorModal from "../../uiTools/Modal/ErrorModal";
 import ProcessingDrawdownModal from "./Components/Modal/processingDrawdownModal";
 import Loader from "../../uiTools/Loading/Loader";
 import { getBorrowerDetails } from "../../services/BackendConnectors/userConnectors/borrowerConnectors";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const BorrowList = () => {
 	const [data, setData] = useState([]);
@@ -24,6 +25,7 @@ const BorrowList = () => {
 	const [kycSelected, setKycSelected] = useState();
 	const [borrowReqProcess, setBorrowReqProcess] = useState(false);
 	const [processModal, setProcessModal] = useState(false);
+	const {getUserWalletAddress} = useContext(WalletContext);
 
 	const [drawdownId, setDrawdownId] = useState("");
 	const [processDrawdown, setProcessDrawdown] = useState();

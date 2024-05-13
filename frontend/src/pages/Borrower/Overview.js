@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import DrawdownCard from "./Components/Cards/DrawdownCard";
 import DueDateCard from "./Components/Cards/DueDateCard";
 import RepaymentCard from "./Components/Cards/RepaymentCard";
@@ -21,6 +21,7 @@ import ProcessingDrawdownModal from "./Components/Modal/processingDrawdownModal"
 import ProcessingRepaymentModal from "./Components/Modal/ProcessingRepaymentModal";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
 import { getBorrowerDetails } from "../../services/BackendConnectors/userConnectors/borrowerConnectors";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const Overview = () => {
 	const [drawdownList, setDrawdownList] = useState([]);
@@ -51,6 +52,7 @@ const Overview = () => {
 	const [drawdownId, setDrawdownId] = useState("");
 	const [check, setCheck] = useState();
 	const [checkForDrawdown, setCheckForDrawdown] = useState();
+	const {getUserWalletAddress} = useContext(WalletContext);
 
 	const [updateRepayment, setUpdateRepayment] = useState(12);
 	const [errormsg, setErrormsg] = useState({

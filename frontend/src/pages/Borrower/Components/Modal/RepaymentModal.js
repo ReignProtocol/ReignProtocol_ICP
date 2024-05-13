@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import { repayment } from "../../../../services/BackendConnectors/userConnectors/borrowerConnectors";
 import { getWalletBal } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
 // import GradientBtnForModal from "../../../../uiTools/Button/GradientBtnForModal";
@@ -8,6 +8,7 @@ import approve from "../../../../services/BackendConnectors/approve";
 import allowance from "../../../../services/BackendConnectors/allowance";
 import Loader from "../../../../uiTools/Loading/Loader";
 import ErrorModal from "../../../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const RepaymentModal = ({
 	data,
@@ -24,6 +25,7 @@ const RepaymentModal = ({
 }) => {
 	const [walletBal, setWalletBal] = useState();
 	const [approvedvalue, setApprovedvalue] = useState();
+	const {getWalletBal} = useContext(WalletContext);
 	const [isInvest, setIsInvest] = useState(false);
 	const [isApproved, setIsApproved] = useState(false);
 	const [loading, setLoading] = useState(false);

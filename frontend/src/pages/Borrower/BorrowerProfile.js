@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import DocumentCard from "../../uiTools/Card/DocumentCard";
 import { useNavigate, useLocation } from "react-router-dom";
 import KYBModal from "./Components/Modal/KYB/KYBModal";
@@ -17,6 +17,7 @@ import {
 	getBorrowerLogoURL,
 } from "../../services/BackendConnectors/userConnectors/borrowerConnectors";
 import { captureException } from "@sentry/react";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const BorrowerProfile = () => {
 	const navigate = useNavigate();
@@ -24,6 +25,7 @@ const BorrowerProfile = () => {
 	const [loading, setLoading] = useState(true);
 
 	const [selected, setSelected] = useState(null);
+	const {getUserWalletAddress} = useContext(WalletContext);
 
 	const [borrowerJson, setborrowerJson] = useState();
 	const [logoImgSrc, setLogoImgSrc] = useState();

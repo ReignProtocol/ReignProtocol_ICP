@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TransactionsCard from "./Components/Cards/TransactionsCard";
 import Loader from "../../uiTools/Loading/Loader";
 import { getUserWalletAddress } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 import { getTokenTransactions } from "../../services/Helpers/transactionsHelper";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const Transaction = () => {
 	const [transactions, setTransactions] = useState([]);
@@ -12,6 +13,7 @@ const Transaction = () => {
 		status: false,
 		msg: "",
 	});
+	const {getUserWalletAddress} = useContext(WalletContext);
 
 	useEffect(() => {
 		getUserWalletAddress().then((res) => {

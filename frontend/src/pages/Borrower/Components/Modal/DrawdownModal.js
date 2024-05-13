@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import GradientBtnForModal from "../../../../uiTools/Button/GradientBtnForModal";
 import { getWalletBal } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
 import WalletImage from "../../../../assets/wallet_white.png";
 import DollarImage from "../../../../assets/Dollar-icon.svg";
 import ErrorModal from "../../../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const DrawdownModal = ({ data, handleDrawdown, onDrawdown }) => {
 	const [walletBal, setWalletBal] = useState();
@@ -11,6 +12,8 @@ const DrawdownModal = ({ data, handleDrawdown, onDrawdown }) => {
 		status: false,
 		msg: "",
 	});
+	const {getUserWalletAddress} = useContext(WalletContext);
+	const {getWalletBal} = useContext(WalletContext);
 
 	useEffect(() => {
 		getWalletBal().then((res) => {
