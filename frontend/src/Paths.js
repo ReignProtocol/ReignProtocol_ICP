@@ -22,6 +22,7 @@ import BorrowerProfile from "./pages/Borrower/BorrowerProfile";
 import EditBorrowerProfile from "./pages/Borrower/EditBorrowerProfile";
 import UnderwriterQueries from "./pages/Borrower/UnderwriterQueries";
 import QueriesPoolDetails from "./pages/Borrower/QueriesPoolDetails";
+import { WalletContext } from "./services/BackendConnectors/userConnectors/commonConnectors";
 
 const Paths = () => {
 	return (

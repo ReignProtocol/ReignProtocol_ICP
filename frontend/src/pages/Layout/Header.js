@@ -46,7 +46,12 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
         disconnectWallet
       } = useContext(WalletContext);
 
-    //   const { isConnected} = useContext(WalletContext);
+      console.log("selectedAddress:", selectedAddress);
+    console.log("balance:", balance);
+    console.log("connected:", connected);
+    console.log("visible:", visible);
+
+      const { isConnected} = useContext(WalletContext);
 
     //   useEffect(() => {
     //     async function fetchData() {
@@ -57,45 +62,45 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [location]);
 
-    useEffect(() => {
-        async function fetchData() {
-            darkModeStatus();
-        } 
-        fetchData();
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         darkModeStatus();
+    //     } 
+    //     fetchData();
 
-        const init = async () => {
-            const provider = await detectEthereumProvider();
-            if (provider) {
-                provider.on('ChainChanged', handleChainChanged);
-                provider.on('AccountsChanged', handleAccountsChanged);
-            }
-        };
-        init();
+    //     const init = async () => {
+    //         const provider = await detectEthereumProvider();
+    //         if (provider) {
+    //             provider.on('ChainChanged', handleChainChanged);
+    //             provider.on('AccountsChanged', handleAccountsChanged);
+    //         }
+    //     };
+    //     init();
 
-        return () => {
-            if (window.ethereum.removeListener) {
-                window.ethereum.removeListener('chainChanged', handleChainChanged);
-                window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
-            }
-        };
-    }, [selectedAddress]);
+    //     return () => {
+    //         if (window.ethereum.removeListener) {
+    //             window.ethereum.removeListener('chainChanged', handleChainChanged);
+    //             window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+    //         }
+    //     };
+    // }, [selectedAddress]);
 
-    const handleChainChanged = (_chainId) => {
-        window.location.reload();
-    };
+    // const handleChainChanged = (_chainId) => {
+    //     window.location.reload();
+    // };
 
-    const handleAccountsChanged = async (accounts) => {
-        if (accounts.length === 0) {
-            setSelectedAddress(null);
-            setBalance(null);
-            setConnected(false);
-        }
-         else if (accounts[0] !== selectedAddress) {
-            setSelectedAddress(accounts[0]);
-            await updateBalance(accounts[0]);
-            setConnected(true);
-        }
-    };
+    // const handleAccountsChanged = async (accounts) => {
+    //     if (accounts.length === 0) {
+    //         setSelectedAddress(null);
+    //         setBalance(null);
+    //         setConnected(false);
+    //     }
+    //      else if (accounts[0] !== selectedAddress) {
+    //         setSelectedAddress(accounts[0]);
+    //         await updateBalance(accounts[0]);
+    //         setConnected(true);
+    //     }
+    // };
             
 
 
@@ -177,7 +182,7 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
                 </label>
                 <ErrorModal errormsg={errormsg} setErrormsg={setErrormsg} />
 
-                {/* {!status ? (
+                 {!status ? (
                     <div className="">
                         <GradientButton onClick={hitRequestAccount}>
                             <Wallet fill={darkMode ? "white" : "#0D0F11"} /> Connect Wallet
@@ -188,9 +193,9 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
                         <WalletWhiteSmall fill={darkMode ? "white" : "#0D0F11"} />
                         <div className="font-semibold text-sm sm:text-base md:text-lg">Connected</div>
                     </div>
-                )} */}
+                )}
 
-
+{/* 
                 {connected ? (
                     <Space direction="horizontal" align="center">
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'end', marginRight: '10px' }}>
@@ -220,6 +225,8 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
                         
                     </Space>
                 </Modal>
+ */}
+
 
 
 
@@ -237,12 +244,6 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
     );
 };
 
-// PropTypes for type-checking
-Header.propTypes = {
-    linkStatus: PropTypes.bool.isRequired,
-    darkMode: PropTypes.bool.isRequired,
-    setDarkMode: PropTypes.func.isRequired,
-    setMetaStatus: PropTypes.func.isRequired,
-};
+
 
 export default Header;

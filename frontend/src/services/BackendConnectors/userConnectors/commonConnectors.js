@@ -5,6 +5,7 @@ const dygnifyToken = require("../../../artifacts/contracts/protocol/old/TestUSDC
 const Sentry = require("@sentry/react");
 const sixDecimals = 6;
 
+
 export const WalletContext = createContext();
 
 const desiredNetwork = 44787;
@@ -70,6 +71,8 @@ export const WalletProvider = ({ children }) => {
     }
   }, [updateBalance]);
 
+ 
+
   const disconnectWallet = useCallback(() => {
     setSelectedAddress(null);
     setBalance(null);
@@ -85,9 +88,7 @@ export const WalletProvider = ({ children }) => {
     return balance;
   };
 
-  const getUserWalletAddress = () => {
-    return selectedAddress;
-  };
+  
   
   
 

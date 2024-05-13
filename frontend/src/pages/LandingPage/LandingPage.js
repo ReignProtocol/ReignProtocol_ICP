@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import GradientButton from "../../uiTools/Button/GradientButton";
 import Header from "../Layout/Header";
 import { useNavigate } from "react-router-dom";
@@ -7,13 +7,18 @@ import InvestImage from "../../assets/Invest.svg";
 import InvestImageLightmode from "../../assets/Invest_lightmode.svg";
 import BorrowImageLightmode from "../../assets/Borrow_lightmode.svg";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 import { isConnected } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const LandingPage = () => {
   const path = useNavigate();
 
   const [darkMode, setDarkMode] = useState(true);
-  const [metaStatus, setMetaStatus] = useState(false);
+  //const [metaStatus, setMetaStatus] = useState(false);
+  
+
+// const {isConnected} = useContext(WalletContext);
 
   const [errormsg, setErrormsg] = useState({
     status: false,
@@ -44,7 +49,7 @@ const LandingPage = () => {
 					<Header
 						darkMode={darkMode}
 						setDarkMode={setDarkMode}
-						setMetaStatus={setMetaStatus}
+						//setMetaStatus={setMetaStatus}
 					/>
 					<ErrorModal errormsg={errormsg} setErrormsg={setErrormsg} />
 					<div className="px-4">
@@ -75,7 +80,7 @@ const LandingPage = () => {
 								<GradientButton
 									onClick={() => {
 										hitRequestAccount();
-										if (metaStatus) path("/investorDashboard/overview");
+										if (true) path("/investorDashboard/overview");
 									}}
 								>
 									Invest
@@ -94,7 +99,7 @@ const LandingPage = () => {
 								<GradientButton
 									onClick={() => {
 										hitRequestAccount();
-										if (metaStatus) path("/borrowerDashboard/overview");
+										if (true) path("/borrowerDashboard/overview");
 									}}
 								>
 									Borrow

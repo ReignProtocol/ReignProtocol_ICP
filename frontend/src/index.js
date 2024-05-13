@@ -4,6 +4,7 @@ import "./index.css";
 import Paths from "./Paths";
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
+import { WalletContext } from "./services/BackendConnectors/userConnectors/commonConnectors";
 
 Sentry.init({
 	dsn: "https://cada35584f3bd70bfcccb42383e24cec@o4507097440845824.ingest.us.sentry.io/4507097526108160",
