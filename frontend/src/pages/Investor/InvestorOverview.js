@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect , useContext} from "react";
 import PoolCard from "./components/Cards/PoolCard";
 import GradientButtonHeader from "../../uiTools/Button/GradientButtonHeader";
 import {
@@ -14,6 +14,7 @@ import DoughnutChart from "../Components/DoughnutChart";
 import { getDisplayAmount } from "../../services/Helpers/displayTextHelper";
 import Loader from "../../uiTools/Loading/Loader";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const InvestorOverview = () => {
 	const [totalInvestment, setTotalInvestment] = useState(0);
@@ -30,6 +31,7 @@ const InvestorOverview = () => {
 	});
 
 	const path = useNavigate();
+	const {getWalletBal} = useContext(WalletContext);
 
 	async function updateSummery() {
 		let data = await getTotalInvestmentOfInvestor();

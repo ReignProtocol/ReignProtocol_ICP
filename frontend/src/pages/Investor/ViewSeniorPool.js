@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext} from "react";
 import { useLocation } from "react-router-dom";
 import TransactionCard from "./components/Cards/TransactionCard";
 import axiosHttpService from "../../services/axioscall";
@@ -14,6 +14,7 @@ import ProcessingFundsModal from "./components/Modal/ProcessingFundsModal";
 import DygnifyImage from "../../assets/Dygnify_Image.png";
 import DollarImage from "../../assets/Dollar-icon.svg";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const ViewSeniorPool = () => {
 	const location = useLocation();
@@ -28,6 +29,8 @@ const ViewSeniorPool = () => {
 	const [selected, setSelected] = useState(null);
 	const [processFundModal, setProcessFundModal] = useState();
 	const [investProcessing, setInvestProcessing] = useState();
+	const {getUserWalletAddress} = useContext(WalletContext);
+	const {getWalletBal} = useContext(WalletContext);
 	const [kycStatus, setKycStatus] = useState();
 	const [loading, setLoading] = useState(true);
 	const [txhash, settxhash] = useState("");

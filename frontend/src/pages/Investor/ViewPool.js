@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import InvestModal from "../Investor/components/Modal/InvestModal";
 import TransactionCard from "./components/Cards/TransactionCard";
@@ -23,9 +23,12 @@ import {
 	getBorrowerLogoURL,
 	getOpportunityJson,
 } from "../../services/BackendConnectors/userConnectors/borrowerConnectors";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const ViewPool = () => {
 	const location = useLocation();
+	const {getUserWalletAddress} = useContext(WalletContext);
+	const {getWalletBal} = useContext(WalletContext);
 	const [poolData, setPoolData] = useState();
 	const [transactionData, setTransactionData] = useState([]);
 	const [expand, setExpand] = useState(false);

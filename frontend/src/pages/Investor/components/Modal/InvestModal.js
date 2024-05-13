@@ -1,4 +1,4 @@
-import { React, useState, useEffect, useRef } from "react";
+import { React, useState, useEffect, useRef, useContext } from "react";
 import WalletImage from "../../../../assets/wallet_white.png";
 import DollarImage from "../../../../assets/Dollar-icon.svg";
 import { getWalletBal } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
@@ -9,6 +9,7 @@ import {
 import approve from "../../../../services/BackendConnectors/approve";
 import allowance from "../../../../services/BackendConnectors/allowance";
 import Loader from "../../../../uiTools/Loading/Loader";
+import { WalletContext } from "../../../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const InvestModal = ({
 	isSenior,
@@ -40,6 +41,7 @@ const InvestModal = ({
 		msg: "",
 	});
 	const inputElement = useRef();
+	const {getWalletBal} = useContext(WalletContext);
 
 	useEffect(() => {
 		getWalletBal().then((res) => {

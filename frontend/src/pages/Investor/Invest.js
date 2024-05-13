@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ViewPoolCard from "./components/Cards/ViewPoolCard";
 import { useNavigate } from "react-router-dom";
 import { getAllActiveOpportunities } from "../../services/BackendConnectors/opportunityConnectors";
@@ -12,13 +12,16 @@ import axiosHttpService from "../../services/axioscall";
 import { kycOptions } from "../../services/KYC/blockpass";
 import Loader from "../../uiTools/Loading/Loader";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const Invest = () => {
 	const path = useNavigate();
 	const [juniorPools, setJuniorPools] = useState([]);
+	const {getWalletBal} = useContext(WalletContext);
 	const [seniorPool, setSeniorPool] = useState();
 
 	const [kycStatus, setKycStatus] = useState();
+	const {getUserWalletAddress} = useContext(WalletContext);
 
 	const [seniorPoolLoading, setSeniorPoolLoading] = useState(true);
 	const [juniorPoolLoading, setJuniorPoolLoading] = useState(true);

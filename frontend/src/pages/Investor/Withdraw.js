@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef , useContext} from "react";
 
 import WithdrawCard from "./components/Cards/WithdrawCard";
 import { getWalletBal } from "../../services/BackendConnectors/userConnectors/commonConnectors";
@@ -15,9 +15,11 @@ import WithdrawFundsModal from "./components/Modal/WithdrawFundsModal";
 import Loader from "../../uiTools/Loading/Loader";
 import ProcessingFundsModal from "./components/Modal/ProcessingFundsModal";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const Withdraw = () => {
 	const [seniorPool, setSeniorPool] = useState();
+	const {getWalletBal} = useContext(WalletContext);
 	const [juniorPools, setJuniorPools] = useState([]);
 	const [selected, setSelected] = useState(null);
 	const [seniorPoolInvestment, setSeniorPoolInvestment] = useState();

@@ -1,103 +1,14 @@
-const { ethers } = require("ethers");
+import React, { createContext, useState, useCallback, useContext } from "react";
+import { ethers } from "ethers";
+import { Modal, message } from "antd";
 const dygnifyToken = require("../../../artifacts/contracts/protocol/old/TestUSDCToken.sol/TestUSDCToken.json");
 const Sentry = require("@sentry/react");
 const sixDecimals = 6;
 
-export const getEthAddress = async () => {
-	Sentry.captureMessage("getEthAddress", "info");
+export const WalletContext = createContext();
 
-	try {
-		const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-		// Prompt user for account connections
-		await provider.send("eth_requestAccounts", []);
-		const signer = provider.getSigner();
-		const result = await signer.getAddress();
-		return { result, success: true };
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: error.message,
-		};
-	}
-};
+const desiredNetwork = 44787;
 
-export const requestAccount = async (metaMask) => {
-	Sentry.captureMessage("requestAccount", "info");
-	try {
-		if (typeof window.ethereum !== "undefined") {
-			let provider = window.ethereum;
-			// edge case if MM and CBW are both installed
-			if (window.ethereum.providers?.length) {
-				window.ethereum.providers.forEach(async (p) => {
-					if (metaMask === true) {
-						if (p.isMetaMask) provider = p;
-					} else {
-						if (p.isCoinbaseWallet) {
-							provider = p;
-						}
-					}
-				});
-			}
-			await provider.request({
-				method: "wallet_switchEthereumChain",
-				params: [{ chainId: "0x13881" }], // chainId must be in hexadecimal numbers
-			});
-			await provider.request({
-				method: "eth_requestAccounts",
-				params: [],
-			});
-
-			return { success: true };
-		} else {
-			Sentry.captureMessage("Wallet connect error", "warning");
-			return {
-				success: false,
-				msg: "please connect your wallet",
-			};
-		}
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: error.message,
-		};
-	}
-};
-
-export const isConnected = async () => {
-	Sentry.captureMessage("requestAccount", "info");
-	try {
-		if (window.ethereum) {
-			let chainId = window.ethereum.chainId;
-			if (chainId !== "0x13881") {
-				const temp = await window.provider.request({
-					method: "wallet_switchEthereumChain",
-					params: [{ chainId: "0x13881" }], // chainId must be in hexadecimal numbers
-				});
-			}
-			if (chainId === "0x13881") {
-				const provider = new ethers.providers.Web3Provider(window.ethereum);
-				const account = await provider.send("eth_requestAccounts", []);
-				return {
-					success: true,
-				};
-			}
-		} else {
-			localStorage.setItem("Wallet-Check", false);
-			return {
-				success: false,
-				msg: "Please Install Wallet",
-			};
-		}
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: "Please Open Metamask and Connect",
-		};
-	}
-};
 
 export const convertDate = (epochTimestamp) => {
 	function pad(s) {
@@ -108,83 +19,122 @@ export const convertDate = (epochTimestamp) => {
 	return [pad(d.getDate()), pad(d.getMonth() + 1), d.getFullYear()].join("/");
 };
 
-export const getUserWalletAddress = async () => {
-	Sentry.captureMessage("getUserWalletAddress", "info");
-	try {
-		if (typeof window.ethereum !== "undefined") {
-			await requestAccount();
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			const signer = provider.getSigner();
-			const address = await signer.getAddress();
-			return { address, success: true };
-		} else {
-			Sentry.captureMessage("Wallet connect error", "warning");
-			return {
-				success: false,
-				msg: "Please connect your wallet!",
-			};
-		}
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: error.message,
-		};
-	}
+
+
+export const WalletProvider = ({ children }) => {
+  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [balance, setBalance] = useState(null);
+  const [connected, setConnected] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [signer, setSigner] = useState(null);
+
+  const updateBalance = useCallback(async (account) => {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const balance = await provider.getBalance(account);
+    setBalance(ethers.utils.formatEther(balance));
+  }, []);
+
+  const connectWallet = useCallback(async () => {
+    if (window.ethereum) {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const chainId = await provider
+          .getNetwork()
+          .then((network) => network.chainId);
+        if (chainId !== desiredNetwork) {
+          Modal.warning({
+            title: "Wrong Network",
+            content: "Please connect to the Celo Alfajores network.",
+          });
+          return;
+        }
+
+        // Set signer
+        const signerInstance = provider.getSigner();
+        setSigner(signerInstance);
+
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        setSelectedAddress(accounts[0]);
+        await updateBalance(accounts[0]);
+        setConnected(true);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      Modal.error({
+        title: "Metamask is not installed",
+        content: "Please install it from https://metamask.io",
+      });
+    }
+  }, [updateBalance]);
+
+  const disconnectWallet = useCallback(() => {
+    setSelectedAddress(null);
+    setBalance(null);
+    setConnected(false);
+    setSigner(null);
+    message.success("Wallet disconnected");
+  }, []);
+
+  const isConnected = () => {
+    return connected;
+  };
+  const getWalletBal = () => {
+    return balance;
+  };
+
+  const getUserWalletAddress = () => {
+    return selectedAddress;
+  };
+
+  return (
+    <WalletContext.Provider
+      value={{
+        connected,
+        selectedAddress,
+        balance,
+        visible,
+        signer,
+        setConnected,
+        setVisible,
+        connectWallet,
+        disconnectWallet,
+        setSelectedAddress,
+        setBalance,
+        isConnected, // Include isConnected in context value
+        getWalletBal, // Include getWalletBal in context value
+        getUserWalletAddress, // Include getUserWalletAddress in context value
+      }}
+    >
+      {children}
+    </WalletContext.Provider>
+  );
 };
 
-export const getWalletBal = async (address) => {
-	Sentry.captureMessage("getWalletBal", "info");
-	try {
-		if (typeof window.ethereum !== "undefined") {
-			await requestAccount();
-			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			// console.log({ provider });
-			const contract = new ethers.Contract(
-				process.env.REACT_APP_TEST_USDCTOKEN,
-				dygnifyToken.abi,
-				provider
-			);
-			const signer = provider.getSigner();
-			const bal = await contract.balanceOf(
-				address ? address : await signer.getAddress()
-			);
-			return {
-				balance: ethers.utils.formatUnits(bal, sixDecimals),
-				success: true,
-			};
-		} else {
-			Sentry.captureMessage("Wallet connect error", "warning");
-			return {
-				success: false,
-				msg: "Please connect your wallet!",
-			};
-		}
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: error.message,
-		};
-	}
-};
+
 
 export const getGasPrice = async () => {
 	try {
 		if (typeof window.ethereum !== "undefined") {
-			await requestAccount();
 			const provider = new ethers.providers.Web3Provider(window.ethereum);
-			let gasPrice = await provider.getGasPrice();
-			return {
-				balance: ethers.utils.formatUnits(gasPrice, sixDecimals),
-				success: true,
-			};
-		}
-	} catch (error) {
-		Sentry.captureException(error);
-		return {
-			success: false,
-			msg: error.message,
-		};
-	}
+      const gasPrice = await provider.getGasPrice();
+      return { gasPrice: gasPrice.toString(), success: true };
+    } else {
+      Sentry.captureMessage("Wallet connect error", "warning");
+      return {
+        success: false,
+        msg: "Please connect your wallet!",
+      };
+    } 
+  }
+  catch (error) {
+    Sentry.captureException(error);
+    return {
+      success: false,
+      msg: error.message,
+    };
+  } 
 };
+

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import TransactionsCard from "../Investor/components/Cards/TransactionsCard";
 import Loader from "../../uiTools/Loading/Loader";
 import { getUserWalletAddress } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 import { getTokenTransactions } from "../../services/Helpers/transactionsHelper";
 import ErrorModal from "../../uiTools/Modal/ErrorModal";
+import { WalletContext } from "../../services/BackendConnectors/userConnectors/commonConnectors";
 
 const Transactions = () => {
 	const [transactions, setTransactions] = useState([]);
+	const {getUserWalletAddress} = useContext(WalletContext);
 	const [loading, setLoading] = useState(true);
 	const [errormsg, setErrormsg] = useState({
 		status: false,
