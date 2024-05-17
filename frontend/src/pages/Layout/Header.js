@@ -13,6 +13,7 @@ import detectEthereumProvider from '@metamask/detect-provider';
 import { Layout, Button, Modal, Space, Typography } from 'antd';
 import { ethers } from 'ethers';
 import { WalletOutlined } from '@ant-design/icons';
+//import { WalletContext } from "@/context/WalletContext";
 
 
 
@@ -33,25 +34,38 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const {
-        selectedAddress,
-        setSelectedAddress,
-        balance,
-        setBalance,
-        connected,
-        setConnected,
-        visible,
-        setVisible,
-        connectWallet,
-        disconnectWallet
-      } = useContext(WalletContext);
+    // const {
+    //    // selectedAddress,
+    //     setSelectedAddress,
+    //     balance,
+    //     setBalance,
+    //     connected,
+    //     setConnected,
+    //     visible,
+    //     setVisible,
+    //     connectWallet,
+    //     disconnectWallet
+    //   } = useContext(WalletContext);
+      const { selectedAddress } = useContext(WalletContext) || {};
+      const { setSelectedAddress } = useContext(WalletContext) || {};
+        const { balance } = useContext(WalletContext) || {};
+        const { setBalance } = useContext(WalletContext) || {};
+        const { connected } = useContext(WalletContext) || {};
+        const { setConnected } = useContext(WalletContext) || {};
+        const { visible } = useContext(WalletContext) || {};
+        const { setVisible } = useContext(WalletContext) || {};
+        const { connectWallet } = useContext(WalletContext) || {};
+        const { disconnectWallet } = useContext(WalletContext) || {};
+
+      
+      
 
       console.log("selectedAddress:", selectedAddress);
     console.log("balance:", balance);
     console.log("connected:", connected);
     console.log("visible:", visible);
 
-      const { isConnected} = useContext(WalletContext);
+      const { isConnected} = useContext(WalletContext) || {};
 
     //   useEffect(() => {
     //     async function fetchData() {
@@ -62,45 +76,45 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
     //     // eslint-disable-next-line react-hooks/exhaustive-deps
     // }, [location]);
 
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         darkModeStatus();
-    //     } 
-    //     fetchData();
+    useEffect(() => {
+        async function fetchData() {
+            darkModeStatus();
+        } 
+        fetchData();
 
-    //     const init = async () => {
-    //         const provider = await detectEthereumProvider();
-    //         if (provider) {
-    //             provider.on('ChainChanged', handleChainChanged);
-    //             provider.on('AccountsChanged', handleAccountsChanged);
-    //         }
-    //     };
-    //     init();
+        const init = async () => {
+            const provider = await detectEthereumProvider();
+            if (provider) {
+                provider.on('ChainChanged', handleChainChanged);
+                provider.on('AccountsChanged', handleAccountsChanged);
+            }
+        };
+        init();
 
-    //     return () => {
-    //         if (window.ethereum.removeListener) {
-    //             window.ethereum.removeListener('chainChanged', handleChainChanged);
-    //             window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
-    //         }
-    //     };
-    // }, [selectedAddress]);
+        return () => {
+            if (window.ethereum.removeListener) {
+                window.ethereum.removeListener('chainChanged', handleChainChanged);
+                window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+            }
+        };
+    }, [selectedAddress]);
 
-    // const handleChainChanged = (_chainId) => {
-    //     window.location.reload();
-    // };
+    const handleChainChanged = (_chainId) => {
+        window.location.reload();
+    };
 
-    // const handleAccountsChanged = async (accounts) => {
-    //     if (accounts.length === 0) {
-    //         setSelectedAddress(null);
-    //         setBalance(null);
-    //         setConnected(false);
-    //     }
-    //      else if (accounts[0] !== selectedAddress) {
-    //         setSelectedAddress(accounts[0]);
-    //         await updateBalance(accounts[0]);
-    //         setConnected(true);
-    //     }
-    // };
+    const handleAccountsChanged = async (accounts) => {
+        if (accounts.length === 0) {
+            setSelectedAddress(null);
+            setBalance(null);
+            setConnected(false);
+        }
+         else if (accounts[0] !== selectedAddress) {
+            setSelectedAddress(accounts[0]);
+            await updateBalance(accounts[0]);
+            setConnected(true);
+        }
+    };
             
 
 
@@ -195,7 +209,7 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
                     </div>
                 )}
 
-{/* 
+
                 {connected ? (
                     <Space direction="horizontal" align="center">
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'end', marginRight: '10px' }}>
@@ -225,7 +239,7 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
                         
                     </Space>
                 </Modal>
- */}
+ 
 
 
 

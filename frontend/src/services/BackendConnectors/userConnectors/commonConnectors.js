@@ -88,7 +88,9 @@ export const WalletProvider = ({ children }) => {
     return balance;
   };
 
-  
+  const getUserWalletAddress = () => {
+    return selectedAddress;
+  }
   
   
 
