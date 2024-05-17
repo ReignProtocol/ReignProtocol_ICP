@@ -46,6 +46,8 @@ const Header = ({ linkStatus, darkMode, setDarkMode, setMetaStatus }) => {
     //     connectWallet,
     //     disconnectWallet
     //   } = useContext(WalletContext);
+
+    
       const { selectedAddress } = useContext(WalletContext) || {};
       const { setSelectedAddress } = useContext(WalletContext) || {};
         const { balance } = useContext(WalletContext) || {};
