@@ -4,7 +4,7 @@ import { Modal, message } from "antd";
 
 export const WalletContext = createContext();
 
-const desiredNetwork = 8082;
+const desiredNetwork = 80002;
 
 export const WalletProvider = ({ children }) => {
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -29,7 +29,7 @@ export const WalletProvider = ({ children }) => {
         if (chainId !== desiredNetwork) {
           Modal.warning({
             title: "Wrong Network",
-            content: "Please connect to the Shardeum Sphinx network.",
+            content: "Please connect to the Polygon Amoy network.",
           });
           return;
         }
