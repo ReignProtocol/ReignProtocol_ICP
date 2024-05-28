@@ -18,9 +18,21 @@ const {
 const sixDecimals = 6;
 const nullAddress = "0x0000000000000000000000000000000000000000";
 
+
+//Utility function to validate Ethereum address
+const isAddressValid = (address) => {
+    return ethers.utils.isAddress(address);
+};
+
+
+
 export const withdrawAllJunior = async (poolAddress) => {
 	Sentry.captureMessage("withdrawAllJunior", "info");
-	try {
+	try {	
+		if (!isAddressValid(poolAddress)) {
+            throw new Error(`Invalid pool address: ${poolAddress}`);
+        }
+
 		if (typeof window.ethereum !== "undefined") {
 			const provider = new ethers.providers.Web3Provider(window.ethereum);
 			const signer = provider.getSigner();
