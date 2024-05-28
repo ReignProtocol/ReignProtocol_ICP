@@ -257,7 +257,7 @@ const Overview = () => {
 					<div className="card-gradient pt-3 pb-4  rounded-xl  md:w-[50%]">
 						<div className="hidden md:block">
 							<h2 className="text-neutral-500 font-semibold text-base md:text-xl px-5">
-								Active loans distribution
+								Active loans distributions
 							</h2>
 						</div>
 						<div className="flex flex-col gap-8 md:flex-row-reverse md:justify-between md:gap-[3vw] md:items-center md:px-5">

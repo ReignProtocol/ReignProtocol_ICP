@@ -3,7 +3,7 @@ const {
 	requestAccount,
 	convertDate,
 } = require("./userConnectors/commonConnectors");
-const opportunityOrigination = require("../../artifacts/contracts/protocol/OpportunityOrigination.sol/OpportunityOrigination.json");
+const opportunityOrigination = require("../../artifacts/contracts/protocol/OpportunityManager.sol/OpportunityManager.json");
 const opportunityPool = require("../../artifacts/contracts/protocol/OpportunityPool.sol/OpportunityPool.json");
 const {
 	getTrimmedWalletAddress,
