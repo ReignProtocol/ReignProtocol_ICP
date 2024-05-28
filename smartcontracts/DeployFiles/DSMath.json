@@ -1,4 +1,4 @@
 {
-  "address": "0xc8B5739423ca2fF67512403cF68C0586692635a3",
-  "abi": "[{\"type\":\"function\",\"name\":\"RAY\",\"constant\":true,\"stateMutability\":\"view\",\"payable\":false,\"inputs\":[],\"outputs\":[{\"type\":\"uint256\"}]}]"
+  "address": "0x8e8F9c6De5D2b2C1883ee4990B06E62cE04CD336",
+  "abi": "[{\"type\":\"function\",\"name\":\"RAY\",\"constant\":true,\"stateMutability\":\"view\",\"payable\":false,\"gas\":19000000,\"inputs\":[],\"outputs\":[{\"type\":\"uint256\"}]}]"
 }
