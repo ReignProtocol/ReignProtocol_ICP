@@ -83,7 +83,7 @@ const ErrorModal = ({ errormsg, setErrormsg }) => {
 								type="button"
 								className={`py-2 px-6 bg-gradient-to-r from-[#4B74FF] to-[#9281FF] hover:from-[#9281FF] hover:to-[#4B74FF] capitalize font-medium border-none text-white rounded-3xl focus:outline-[#9281FF]`}
 							>
-								Go back
+								Back
 							</button>
 						</div>
 					</div>
