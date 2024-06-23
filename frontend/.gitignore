@@ -61,3 +61,6 @@ typechain-types
 cache
 artifacts
 
+
+# Sentry Config File
+.sentryclirc
