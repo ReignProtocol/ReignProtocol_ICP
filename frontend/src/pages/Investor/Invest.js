@@ -58,7 +58,15 @@ const Invest = () => {
 				setKycStatus(true);
 			}
 			if (result.res.status === "error") {
+				//
+				//
+				//
+				//
 				setKycStatus(false);
+				//
+				//
+				//
+				//
 			}
 		} catch (error) {
 			console.log(error);
