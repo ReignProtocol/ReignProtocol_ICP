@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import Header from "../Layout/Header";
 import OverviewIcon from "../../pages/SVGIcons/OverviewIcon";
 import BorIcon from "../../pages/SVGIcons/BorIcon";
-// import TransactionIcon from "../../pages/SVGIcons/TransactionIcon";
+import TransactionIcon from "../../pages/SVGIcons/TransactionIcon";
 import UnderIcon from "../../pages/SVGIcons/UnderIcon";
 import ProfileIcon from "../../pages/SVGIcons/ProfileIcon";
 
