@@ -35,8 +35,8 @@ module.exports = {
 		localhost: {
 		  url: "http://127.0.0.1:8545/",
 		},
-		amoy: {
-		  url: "https://rpc-amoy.polygon.technology/",
+		alfajores: {
+		  url: "https://alfajores-forno.celo-testnet.org",
 		  accounts: [`0x${process.env.PRIVATE_KEY}`],
 		  gas: 20000000,
 		},
