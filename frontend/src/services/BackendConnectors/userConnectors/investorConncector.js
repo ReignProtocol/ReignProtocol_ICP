@@ -122,7 +122,7 @@ export const getTotalInvestmentOfInvestor = async () => {
 				provider
 			);
 
-			let opportunities = await contract.getOpportunityOfInvestor(
+			let opportunities = await contract.getOpportunities(
 				investorAddress
 			);
 			let totalInvestment = 0;
@@ -139,7 +139,7 @@ export const getTotalInvestmentOfInvestor = async () => {
 				seniorPool.abi,
 				signer
 			);
-			let sharePrice = await seniorPoolContract.sharePrice();
+			let sharePrice = await seniorPoolContract.s_sharePrice();
 			let seniorPoolSharePrice = ethers.utils.formatUnits(
 				sharePrice.toString(),
 				sixDecimals
@@ -214,7 +214,7 @@ export const getSeniorPoolSharePrice = async () => {
 				seniorPool.abi,
 				provider
 			);
-			let sharePrice = await contract.sharePrice();
+			let sharePrice = await contract.s_sharePrice();
 			sharePrice = ethers.utils.formatUnits(sharePrice, sixDecimals) * 100;
 
 			return { sharePrice, success: true };
@@ -269,7 +269,7 @@ export const getJuniorWithdrawableOp = async () => {
 				provider
 			);
 
-			let opportunities = await contract.getOpportunityOfInvestor(
+			let opportunities = await contract.getOpportunities(
 				investorAddress
 			);
 			let opportunityList = [];

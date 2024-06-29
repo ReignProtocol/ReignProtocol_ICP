@@ -38,7 +38,7 @@ export const createOpportunity = async (formData) => {
 				opportunityOrigination.abi,
 				signer
 			);
-			const loanAmt = ethers.utils.parseUnits(
+			const loanAmount = ethers.utils.parseUnits(
 				formData.loan_amount,
 				sixDecimals
 			);
@@ -46,7 +46,7 @@ export const createOpportunity = async (formData) => {
 				formData.loan_interest,
 				sixDecimals
 			);
-			const capitalLoss = formData.capital_loss
+			const InvestmentLoss = formData.capital_loss
 				? ethers.utils.parseUnits(formData.capital_loss, sixDecimals)
 				: 0;
 			const opData = [
@@ -54,12 +54,12 @@ export const createOpportunity = async (formData) => {
 				formData.loan_name,
 				formData.loanInfoHash,
 				formData.loan_type,
-				loanAmt,
+				loanAmount,
 				formData.loan_tenure,
 				loanInterest,
 				formData.payment_frequency,
 				formData.collateralHash,
-				capitalLoss,
+				InvestmentLoss,
 			];
 			const transaction1 = await contract.createOpportunity(opData);
 			await transaction1.wait();
@@ -98,16 +98,16 @@ export function getOpportunity(opportunity) {
 
 		// Create the opportunity object
 		let obj = {};
-		obj.id = opportunity.opportunityID.toString();
+		obj.id = opportunity.opportunityId.toString();
 		obj.borrower = opportunity.borrower.toString();
 		obj.opportunityName = opportunity.opportunityName.toString();
 		obj.borrowerDisplayAdd = getTrimmedWalletAddress(obj.borrower);
-		obj.opportunityInfo = opportunity.opportunityInfo.toString();
+		obj.opportunityInfo = opportunity.opportunityDescription.toString();
 		obj.loanType = opportunity.loanType.toString(); // 0 or 1 need to be handled
 		let amount = ethers.utils.formatUnits(opportunity.loanAmount, sixDecimals);
 		obj.opportunityAmount = getDisplayAmount(amount);
 		obj.actualLoanAmount = amount;
-		obj.loanTenure = (opportunity.loanTenureInDays / 30).toString() + " Months";
+		obj.loanTenure = (opportunity.loanTermInDays / 30).toString() + " Months";
 		let loanInt = ethers.utils.formatUnits(
 			opportunity.loanInterest,
 			sixDecimals
@@ -117,14 +117,14 @@ export function getOpportunity(opportunity) {
 		obj.paymentFrequencyInDays =
 			opportunity.paymentFrequencyInDays.toString() + " Days";
 		obj.collateralDocument = opportunity.collateralDocument.toString();
-		obj.capitalLoss = ethers.utils
-			.formatUnits(opportunity.capitalLoss, sixDecimals)
+		obj.InvestmentLoss = ethers.utils
+			.formatUnits(opportunity.InvestmentLoss, sixDecimals)
 			.toString();
 		obj.status = opportunity.opportunityStatus.toString();
 		obj.opportunityPoolAddress = opportunity.opportunityPoolAddress.toString();
 
-		obj.createdOn = convertDate(opportunity.createdOn);
-		obj.epochCreationDate = opportunity.createdOn.toString();
+		obj.createdOn = convertDate(opportunity.createdAt);
+		obj.epochCreationDate = opportunity.createdAt.toString();
 
 		return { obj, success: true };
 	} catch (error) {
@@ -166,7 +166,7 @@ export const getOpportunitysOf = async () => {
 							opportunityPool.abi,
 							provider
 						);
-						let poolBal = await poolContract.poolBalance();
+						let poolBal = await poolContract.s_poolBalance();
 						obj.poolBalance = ethers.utils.formatUnits(poolBal, sixDecimals);
 						obj.poolDisplayBalance = getDisplayAmount(obj.poolBalance);
 					} catch (error) {
@@ -338,7 +338,7 @@ export const getDrawdownOpportunities = async () => {
 					continue;
 				}
 
-				let poolBalance = await poolContract.poolBalance();
+				let poolBalance = await poolContract.s_poolBalance();
 				poolBalance = ethers.utils.formatUnits(poolBalance, sixDecimals);
 				let loanAmount = ethers.utils.formatUnits(tx.loanAmount, sixDecimals);
 				console.log(poolBalance.toString());
@@ -409,10 +409,10 @@ export const getOpportunitiesWithDues = async () => {
 					}
 
 					let repaymentDate = await poolContract.nextRepaymentTime();
-					let totalRepayments = await poolContract.totalRepayments();
-					let repaymentCounter = await poolContract.repaymentCounter();
+					let totalRepayments = await poolContract.s_totalRepayments();
+					let repaymentCounter = await poolContract.s_repaymentCounter();
 					let repaymentAmount = await poolContract.getRepaymentAmount();
-					let totalRepaidAmt = await poolContract.totalRepaidAmount();
+					let totalRepaidAmt = await poolContract.s_totalRepaidAmount();
 					repaymentAmount = ethers.utils.formatUnits(
 						repaymentAmount,
 						sixDecimals
@@ -486,8 +486,8 @@ export const getAllActiveOpportunities = async () => {
 						opportunityPool.abi,
 						provider
 					);
-					let juniorPooldata = await poolContract.juniorSubpoolDetails();
-					let poolBal = await poolContract.poolBalance();
+					let juniorPooldata = await poolContract.s_juniorSubPoolDetails();
+					let poolBal = await poolContract.s_poolBalance();
 					let { obj } = getOpportunity(opportunity);
 					let investableAmount =
 						+juniorPooldata[1].toString() - +juniorPooldata[2].toString();
@@ -546,13 +546,13 @@ export const getAllWithdrawableOpportunities = async () => {
 						opportunityPool.abi,
 						provider
 					);
-					let poolBal = await poolContract.poolBalance();
+					let poolBal = await poolContract.s_poolBalance();
 					if (poolBal.toString() !== "0") {
 						const signer = provider.getSigner();
-						const userStakingAmt = await poolContract.stakingBalance(
+						const userStakingAmt = await poolContract.s_stakingBalance(
 							await signer.getAddress()
 						);
-						const estimatedAPY = await poolContract.juniorYieldPerecentage();
+						const estimatedAPY = await poolContract.s_juniorYieldPercentage();
 						let { obj } = getOpportunity(tx);
 						obj.capitalInvested = userStakingAmt;
 						obj.estimatedAPY = estimatedAPY;
