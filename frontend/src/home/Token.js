@@ -6,7 +6,7 @@ import axiosHttpService from "../services/axioscall";
 import { amlCheck } from "../services/ApiOptions/OFACAxiosOptions";
 import axios from "axios";
 import { Web3Storage, getFilesFromPath } from "web3.storage";
-//import opportunityOrigination from "../artifacts/contracts/protocol/OpportunityManager.sol/OpportunityManager.json";
+import opportunityOrigination from "../artifacts/contracts/protocol/OpportunityManager.sol/OpportunityManager.json";
 import seniorPool from "../artifacts/contracts/protocol/SeniorPool.sol/SeniorPool.json";
 import opportunityPool from "../artifacts/contracts/protocol/OpportunityPool.sol/OpportunityPool.json";
 import "./Token.css";
