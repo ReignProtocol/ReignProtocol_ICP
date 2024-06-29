@@ -6,7 +6,7 @@ import axiosHttpService from "../services/axioscall";
 import { amlCheck } from "../services/ApiOptions/OFACAxiosOptions";
 import axios from "axios";
 import { Web3Storage, getFilesFromPath } from "web3.storage";
-import opportunityOrigination from "../artifacts/contracts/protocol/OpportunityManager.sol/OpportunityManager.json";
+import opportunityManager from "../artifacts/contracts/protocol/OpportunityManager.sol/OpportunityManager.json";
 import seniorPool from "../artifacts/contracts/protocol/SeniorPool.sol/SeniorPool.json";
 import opportunityPool from "../artifacts/contracts/protocol/OpportunityPool.sol/OpportunityPool.json";
 import "./Token.css";
@@ -92,7 +92,7 @@ function Token() {
 			if (contractId == 0) {
 				contract = new ethers.Contract(
 					process.env.REACT_APP_OPPORTUNITY_ORIGINATION_ADDRESS,
-					opportunityOrigination.abi,
+					opportunityManager.abi,
 					signer
 				);
 			} else if (contractId == 1) {
@@ -196,7 +196,7 @@ function Token() {
 			const signer = provider.getSigner();
 			let contract = new ethers.Contract(
 				process.env.REACT_APP_OPPORTUNITY_ORIGINATION_ADDRESS,
-				opportunityOrigination.abi,
+				opportunityManager.abi,
 				signer
 			);
 
