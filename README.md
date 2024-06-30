@@ -23,32 +23,33 @@ Our plan involves building the protocol as an infrastructure toolkit to fulfill 
 3. Enabling robust security and privacy features, such as tools for on and off-chain credit scoring, reputation management, whitelisting, compliance checks, decentralized data storage, dashboards, etc., all integrated with encryption and security measures.
 
 ## SMART CONTRACTS
-The contracts are deployed on Shardeum testnet(Hackathon) in the addresses listed below
+The contracts are deployed on Celo Alfajores in the addresses listed below
 
-| Contract Name            | Contract Address                                   |
-|--------------------------|----------------------------------------------------|
-| Accounting.sol           | 0xF6a22bF3CCc89a2cDdAcC5f30AB7AaC11d04460C        |
-| AuthorizeUser.sol        | 0x9CbaCb7bDf91B0ffd8712f5e120bA15e8D42F61d        |
-| BaseUpgradeablePausable  | 0xD6d270adBF8E2428CEcf2955803a56f68686a4ee        |
-| Borrower                 | 0x2f242444BBf6F19cC422AF163bFa83a4D6378Fbc        |
-| CollateralToken          | 0x137A5D76aE9E9CdE4B055804F8618DB3a94c9D0b        |
-| ConfigHelper             | 0x5EaE563994AB80e98b4bC7852426FDf627ca51CF        |
-| ConfigOptions            | 0x119b95d4D36De63b184bd4b022aC4C2f9cFDcB27        |
-| Constants                | 0xEa7e2d857AD7dd5a0AbbC11cB8668e55D2F434ED        |
-| DSMath                   | 0xA1cF92f8739cDD1eb7ECbcFBDd1E623B96D5AD22        |
-| IdentityToken            | 0xfDB15D72192D956547d7a8f4cC73d950d0d12975        |
-| Investor                 | 0x460dfeac039a0B5EA83204F64a54D2c48946D9ac        |
-| MultiSign                | 0xdA4FfB7F018fcf59dDF35c851dcb7C1E08abB032        |
-| OpportunityManager       | 0x038F71D9367AA59Bfe541c752457851ccB095285        |
-| OpportunityPool          | 0x0148F3ba331625572115D13b1Ef3Ff5eb52D19D9        |
-| PauserPausable           | 0xF495a7B73E091dd6346EA6401E29cDbbBf42D6d3        |
-| ReignCoin                | 0x713c0c4416348C2dEF4ff9e97e90a6a8300eb7b3        |
-| ReignConfig              | 0xCBe84a0757FaAA388DF793Da0cfDe8C89Fa2e7Ec        |
-| ReignKeeper              | 0xa6d68AAa67c655Cf26E59146e740D2F1B29ce28e        |
-| ReignTreasury            | 0x15d79Ce7c1DAF054764fcfE68764EEA51f02b47C        |
-| SeniorPool               | 0x5122403f02082213A63a0B35219FEF4Df6fAf78e        |
-| ReignStaking             | 0xd5b8f93362E3c2baE215E4191f1C3A090758AB27        |
-| TestUSDCToken            | 0x43a43d73EBb92409EeF473f64F67F86FD26E5F35        |
+| Contract Name              | Contract Address                                   |
+|----------------------------|----------------------------------------------------|
+| Accounting.sol             | 0xbE96Edef6aFFA452ff9181d36065aa1D3afE8694        |
+| AuthorizeUser.sol          | 0x045c3c801B6a21866130B70971098019cdB95158        |
+| BaseUpgradeablePausable    | 0x5C821B20139a00098a2CDEB8038EB0F0B0cF0bc1        |
+| Borrower                   | 0x5bBa6b8bab259A2122534621ADA01f88370342Bf        |
+| CollateralToken            | 0x46220FE6D868aBC021bC84364a9A8C274E8A7e01        |
+| ConfigHelper               | 0x10213f1a78eb3F717F0DeCf8750424803C51Feb1        |
+| ConfigOptions              | 0xC0f908ed6D3FF1eA67b6Da34Adc84ea6f3887Fb0        |
+| Constants                  | 0x86D2e67643064a913AEF9B26958c3C2F276828F1        |
+| DSMath                     | 0x82bE44F1135F3D3347AA44245fF15df831AC4225        |
+| IdentityToken              | 0xa6F1f5614AdbC2Cc6148243A1F17E413A069A57D        |
+| Investor                   | 0x14CBbC9A3F3E1b1257695Bc5c6817392a8B4aF77        |
+| MultiSign                  | 0x0B4bc9d94cb98c2c118160b781a6ccd552c4f511        |
+| OpportunityManager         | 0xaE772f42A332cB719a85d6a4470cab76Bb6436D3        |
+| OpportunityPool            | 0x37318A53e1ECed143937a10CA811F245DC6AF81b        |
+| PauserPausable             | 0x7DF4C6b844c2F55CBe7DE809cb2a1BB3686148A2        |
+| ReignCoin                  | 0xa44eF65d18257b6f89DE542Aa917a086D4e8c2C5        |
+| ReignConfig                | 0x43436481117cEdc98f0806F49AdA8D719F1cf6F8        |
+| ReignKeeper                | 0x9e13b240170036d9dE3D2d190B17249afB790F1F        |
+| ReignTreasury              | 0x0B98CbD084acDa3C338e0DD538Bf07711C79598E        |
+| SeniorPool                 | 0x951f9cDe5A74AE949B6655Ac751027e747Bc16E8        |
+| ReignStaking               | 0xc7572cE0A215C168fEC2555709fe4D29af1D201d        |
+| TestUSDCToken              | 0xB68F542Ef0b3cff84c110461f9ACf5Ea6AA2e09A        |
+
 
 
 ## HOW IT WORKS
