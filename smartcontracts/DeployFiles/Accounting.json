@@ -1,4 +1,4 @@
 {
-  "address": "0xbE96Edef6aFFA452ff9181d36065aa1D3afE8694",
+  "address": "0xD38E56D7C26Dd34787DDC24A2ceE1bCA00dDf4F9",
   "abi": "[{\"type\":\"function\",\"name\":\"currentDecimals\",\"constant\":true,\"stateMutability\":\"view\",\"payable\":false,\"gas\":19000000,\"inputs\":[],\"outputs\":[{\"type\":\"uint256\"}]}]"
 }

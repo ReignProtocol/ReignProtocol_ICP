@@ -35,8 +35,8 @@ module.exports = {
 		localhost: {
 		  url: "http://127.0.0.1:8545/",
 		},
-		alfajores: {
-		  url: "https://alfajores-forno.celo-testnet.org",
+		bitfinity: {
+		  url: "https://testnet.bitfinity.network",
 		  accounts: [`0x${process.env.PRIVATE_KEY}`],
 		  gas: 20000000,
 		},
