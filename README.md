@@ -25,30 +25,32 @@ Our plan involves building the protocol as an infrastructure toolkit to fulfill 
 ## SMART CONTRACTS
 The contracts are deployed on Bitfinity in the addresses listed below
 
-| Contract Name              | Contract Address                                   |
-|----------------------------|----------------------------------------------------|
-| Accounting.sol             | 0xbE96Edef6aFFA452ff9181d36065aa1D3afE8694        |
-| AuthorizeUser.sol          | 0x045c3c801B6a21866130B70971098019cdB95158        |
-| BaseUpgradeablePausable    | 0x5C821B20139a00098a2CDEB8038EB0F0B0cF0bc1        |
-| Borrower                   | 0x5bBa6b8bab259A2122534621ADA01f88370342Bf        |
-| CollateralToken            | 0x46220FE6D868aBC021bC84364a9A8C274E8A7e01        |
-| ConfigHelper               | 0x10213f1a78eb3F717F0DeCf8750424803C51Feb1        |
-| ConfigOptions              | 0xC0f908ed6D3FF1eA67b6Da34Adc84ea6f3887Fb0        |
-| Constants                  | 0x86D2e67643064a913AEF9B26958c3C2F276828F1        |
-| DSMath                     | 0x82bE44F1135F3D3347AA44245fF15df831AC4225        |
-| IdentityToken              | 0xa6F1f5614AdbC2Cc6148243A1F17E413A069A57D        |
-| Investor                   | 0x14CBbC9A3F3E1b1257695Bc5c6817392a8B4aF77        |
-| MultiSign                  | 0x0B4bc9d94cb98c2c118160b781a6ccd552c4f511        |
-| OpportunityManager         | 0xaE772f42A332cB719a85d6a4470cab76Bb6436D3        |
-| OpportunityPool            | 0x37318A53e1ECed143937a10CA811F245DC6AF81b        |
-| PauserPausable             | 0x7DF4C6b844c2F55CBe7DE809cb2a1BB3686148A2        |
-| ReignCoin                  | 0xa44eF65d18257b6f89DE542Aa917a086D4e8c2C5        |
-| ReignConfig                | 0x43436481117cEdc98f0806F49AdA8D719F1cf6F8        |
-| ReignKeeper                | 0x9e13b240170036d9dE3D2d190B17249afB790F1F        |
-| ReignTreasury              | 0x0B98CbD084acDa3C338e0DD538Bf07711C79598E        |
-| SeniorPool                 | 0x951f9cDe5A74AE949B6655Ac751027e747Bc16E8        |
-| ReignStaking               | 0xc7572cE0A215C168fEC2555709fe4D29af1D201d        |
-| TestUSDCToken              | 0xB68F542Ef0b3cff84c110461f9ACf5Ea6AA2e09A        |
+| Contract Name              | Contract Address                                                                                      |
+|----------------------------|-------------------------------------------------------------------------------------------------------|
+| Accounting.sol             | https://explorer.testnet.bitfinity.network/address/0xD38E56D7C26Dd34787DDC24A2ceE1bCA00dDf4F9         |
+| AuthorizeUser.sol          | https://explorer.testnet.bitfinity.network/address/0x3B299d9D1bD1b2E5e84e2Ae007d5F54e062B34D2         |
+| BaseUpgradeablePausable    | https://explorer.testnet.bitfinity.network/address/0x80C3C4e947C211E6509df1BC715788384435956B         |
+| Borrower                   | https://explorer.testnet.bitfinity.network/address/0xe8755C84C023248b5079791566d52097F09a25D7         |
+| CollateralToken            | https://explorer.testnet.bitfinity.network/address/0xfcaad95Dee676FF2f2D9bCcEa43485566795980e         |
+| ConfigHelper               | https://explorer.testnet.bitfinity.network/address/0xB90F4e594B04BbE9A1D4C2475FA5f2d65f7ffA4A         |
+| ConfigOptions              | https://explorer.testnet.bitfinity.network/address/0xECc3F6c8fb8FCA4FC2D0cFf44638Fdba6e17B08d         |
+| Constants                  | https://explorer.testnet.bitfinity.network/address/0x9671FBa5A22c780b280B673cBb9632dD0e111e05         |
+| DSMath                     | https://explorer.testnet.bitfinity.network/address/0x05Da0Cb2f80d5D729DA53D1965C2318670076473         |
+| IdentityToken              | https://explorer.testnet.bitfinity.network/address/0xc4bd6eC7dEfBa36bE09853597E72a405bD0dcC54         |
+| Investor                   | https://explorer.testnet.bitfinity.network/address/0xC999161aD9c7E7370CE3148fBc69842c3E8c713D         |
+| MultiSign                  | https://explorer.testnet.bitfinity.network/address/0x2Cf3FEa0FA0Fc8b4ff069CA1Dcf97a06Af2CF00F         |
+| OpportunityManager         | https://explorer.testnet.bitfinity.network/address/0x2C5553b691dea0d3E2FB6960B9d04c09aFdAF573         |
+| OpportunityPool            | https://explorer.testnet.bitfinity.network/address/0xC7E1Edf207D2993D56bccCfCd570E4A3Fe7F5C22         |
+| PauserPausable             | https://explorer.testnet.bitfinity.network/address/0x763FcAF6725A1484d8B80b8ADC520702416be09B         |
+| ReignCoin                  | https://explorer.testnet.bitfinity.network/address/0x9fcEDD72b864318b1482DCb25754a7658a63d7C5         |
+| ReignConfig                | https://explorer.testnet.bitfinity.network/address/0x206cb68DB038a79fD1026841f367749334DE9D3E         |
+| ReignKeeper                | https://explorer.testnet.bitfinity.network/address/0x8e8F9c6De5D2b2C1883ee4990B06E62cE04CD336         |
+| ReignTreasury              | https://explorer.testnet.bitfinity.network/address/0xA38f4CCDeF5c67315f35343a832be3179ba3348c         |
+| SeniorPool                 | https://explorer.testnet.bitfinity.network/address/0xE6c6722A9AE77dfD9A18AAA1A11ED509442a6A2F         |
+| ReignStaking               | https://explorer.testnet.bitfinity.network/address/0x0ee356e5C64e2c56645848b7aA5272E1A7d70941         |
+| TestUSDCToken              | https://explorer.testnet.bitfinity.network/address/0x769f3bC48ae94974b8b288b8ef6aDb0b174513f7         |
+| NFTMinter                  | https://explorer.testnet.bitfinity.network/address/0x90433F14c2484d5E8C2Bb1FDC8193f8B82334Cc5         |
+
 
 
 
