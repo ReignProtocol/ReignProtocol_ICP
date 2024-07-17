@@ -23,7 +23,7 @@ Our plan involves building the protocol as an infrastructure toolkit to fulfill 
 3. Enabling robust security and privacy features, such as tools for on and off-chain credit scoring, reputation management, whitelisting, compliance checks, decentralized data storage, dashboards, etc., all integrated with encryption and security measures.
 
 ## SMART CONTRACTS
-The contracts are deployed on Celo Alfajores in the addresses listed below
+The contracts are deployed on Bitfinity in the addresses listed below
 
 | Contract Name              | Contract Address                                   |
 |----------------------------|----------------------------------------------------|
